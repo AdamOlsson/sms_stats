@@ -1,0 +1,6 @@
+.vscode/
+test/
+data.txt
+statistics.txt
+*.o
+main
