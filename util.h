@@ -15,5 +15,7 @@ int countWords(FILE* fptr);
 int countWordsLine(char* line);
 void countOccurences(char *line);
 int separator(int who);
+void readWord(char ** buffer_ptr, char word[], int word_size);
+
 
 #endif

@@ -92,3 +92,24 @@ int isNewMessage(char *line){
         return 0;
     }
 }
+
+void readWord(char ** buffer_ptr, char word[], int word_size){
+    // Reads the next word from the buffer and increments the ptr
+    // Emojis will be returned as word. Note sequences of emojies will
+    // be returned as a single word.
+    char *val;
+    // keep track if char sequence starts with negative or positive val,
+    // negative value is start of emoji sequence
+    int is_word = **buffer_ptr < 0 ? -1 : 1;
+
+    for(int i = 0; i < word_size; i++){
+        val = *buffer_ptr;
+        *buffer_ptr += 1;
+
+        if(is_word * (*val) < 0 || *val == ' ' || *val == '\0' || *val == '\n'){ // end of word
+            word[i] = '\0';
+            return;
+        }
+        word[i] = tolower(*val);
+    }
+}

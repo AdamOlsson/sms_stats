@@ -9,7 +9,6 @@ Statistics to collect:
     - Count occurences of emojis
 
 */ 
-void readWord(char ** buffer_ptr, char word[], int word_size);
 
 // DD.MM.YY, hh:mm - Verena:
 // DD.MM.YY, hh:mm - Adam ❤:
@@ -80,21 +79,7 @@ int main(){
     return 0;
 }
 
-void readWord(char ** buffer_ptr, char word[], int word_size){
-    // Reads the next word from the buffer and increments the ptr
 
-    char *val;
-    for(int i = 0; i < word_size; i++){
-        val = *buffer_ptr;
-        *buffer_ptr += 1;
-
-        if(*val == ' ' || *val == '\0' || *val == '\n'){ // end of word
-            word[i] = '\0';
-            return;
-        }
-        word[i] = tolower(*val);
-    }
-}
 
 
 
