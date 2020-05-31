@@ -1,28 +1,49 @@
 #include "util.h"
 
 
-// void countOccurences(char *line){
-//     // returns a list of hash values for each respective word in the line.
-//     // TODO: Handle emojis
-//     printf("new message\n");
-//     char buffer[16];
-//     int bidx = 0;
-//     int idx  = 0;
-//     unsigned long hs;
-//     while(line[idx] != '\0'){
-//         // printf("%d\n", line[idx]);
-//         if(line[idx] == ' '){
-//             buffer[bidx] = '\0';
-//             printf("word: %s\n", buffer);
-//             bidx = 0;
-//         }else{
-//             buffer[bidx] = tolower(line[idx]); // copy value into buffer
-//             bidx++;
-//         }
-//         idx++;
-//     }
-// }
-// 
+void printDict(char ** dictionary, int *occurences, int tail){
+    for(int i = 0; i < tail; i++){
+        printf("%s | %d \n", dictionary[i], occurences[i]);
+    }
+}
+
+int newWord(char ** dictionary, int dict_length, char* word){
+    // checks if the given word has been found before,
+    // returns the index of where the word is stored
+    // return -1 if the word is not found
+    int char_idx = 0;
+    for(int i = 0; i < dict_length; i++){
+        if(NULL == dictionary[i]){
+            return -1;
+        }
+
+        if(compareWords(word, dictionary[i]) == 1){
+            // words are equal
+            return i; // return index of word
+        }
+    }
+    return -1;
+}
+
+int compareWords(char* word1, char* word2){
+    // compare two words against each other
+    // return 1 if equal, 0 otherwise
+    // NOTE: Assumes that both words are null terminated
+    int equal = 1;
+    int char_idx = 0;
+    while(1){
+        if((word1[char_idx]) != word2[char_idx]){
+            equal = 0;
+            break;
+        }else{
+            if((word1[char_idx]) == '\0' && word2[char_idx] == '\0'){ // end of word
+                break;
+            }
+            char_idx++;
+        }
+    }
+    return equal;
+}
 
 int isEmoji(char* word){
     // evaluates if the giver char[] is an emoji
