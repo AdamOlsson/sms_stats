@@ -56,8 +56,7 @@ int main(){
         // read words on line
         while(*buffer_ptr != '\0' && *buffer_ptr != '\n'){
             readWord(&buffer_ptr, word, word_size);
-            // Do something
-            printf("%s\n", word);
+            printf("%s | %d \n", word, isEmoji(word));
         }
         printf("-------------------\n");
 

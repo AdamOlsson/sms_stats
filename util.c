@@ -24,6 +24,20 @@
 // }
 // 
 
+int isEmoji(char* word){
+    // evaluates if the giver char[] is an emoji
+    // value > 0 is word
+    // value < 0 is emoji
+    // value == 0 you fucked
+    int sum = 0;
+    int idx = 0;
+    char c = word[idx];
+    while(c != '\0'){
+        sum += c;
+        c = word[++idx];
+    }
+    return sum;
+}
 
 int countWords(FILE* fptr){
     // Counts the number of words in the the file
