@@ -121,7 +121,11 @@ void readWord(char ** buffer_ptr, char word[], int word_size){
         *buffer_ptr += 1;
 
         if(is_word * (*val) < 0 || *val == ' ' || *val == '\0' || *val == '\n'){ // end of word
-            word[i] = '\0';
+            if(word[i-1] == '.' || word[i-1] == '!'|| word[i-1] == '?'|| word[i-1] == ','){
+                word[i-1] = '\0';
+            }else{
+                word[i] = '\0';
+            }
             return;
         }
         word[i] = tolower(*val);
