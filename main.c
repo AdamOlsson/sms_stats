@@ -1,5 +1,6 @@
 #include "util.h"
 #include "sort.h"
+#include "emojitable.h"
 
 
 /*
@@ -21,8 +22,17 @@ Statistics to collect:
 int main(){
 
     char filename[] = "data.txt";
+    char tablename[] = "emoji_encodings.txt";
 
-    FILE *file_ptr = fopen(filename, "r");
+    FILE *file_ptr = fopen(tablename, "r");
+    int table_length = 28;
+    struct Table table[table_length];
+    readTable(table, table_length, file_ptr);
+    // printTable(table, table_length);
+
+    fclose(file_ptr);
+    return 0;
+    file_ptr = fopen(filename, "r");
     int buffer_length = 256;
     char buffer[buffer_length];
     char *buffer_ptr;
@@ -46,7 +56,7 @@ int main(){
 
     int msg_count[2] = {0}; // messages per person
 
-    int max_no_read = __INT_MAX__; // debugging
+    int max_no_read = 10;//__INT_MAX__; // debugging
     int read_count = 0; // debugging
     int sender;
     int word_size = 32;
@@ -65,7 +75,13 @@ int main(){
         while(*buffer_ptr != '\0' && *buffer_ptr != '\n'){
             readWord(&buffer_ptr, word, word_size);
             if(isEmoji(word) < 0){
-                // emoji
+                int b = 0;
+                printf("%s\n", word);
+                // printf("%ld\n", sizeof(word)/sizeof(char));
+                while(word[b] != '\0'){
+                    printf("%d ", word[b++]);
+                }
+                printf("\n");
             }else{
                 // word
                 dict_idx = newWord(dictionary, dict_tail, word);
@@ -96,9 +112,8 @@ int main(){
     fclose(file_ptr);
 
     // sort dictionary by occurences
-
-    mergeSort(word_occurences, dictionary,0, dict_tail-1);
-    printDict(dictionary, word_occurences, dict_tail);
+    // mergeSort(word_occurences, dictionary,0, dict_tail-1);
+    // printDict(dictionary, word_occurences, dict_tail);
 
 
     // // write to file

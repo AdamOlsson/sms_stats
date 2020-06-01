@@ -14,7 +14,6 @@ U+1F606:fffffff0 ffffff9f ffffff98 ffffff86
 U+1F914:fffffff0 ffffff9f ffffffa4 ffffff94
 U+1F970:fffffff0 ffffff9f ffffffa5 ffffffb0
 U+1F604:fffffff0 ffffff9f ffffff98 ffffff84
-U+2764:ffffffe2 ffffff9d ffffffa4 ffffffef ffffffb8 ffffff8f
 U+1F605:fffffff0 ffffff9f ffffff98 ffffff85
 U+1F62D:fffffff0 ffffff9f ffffff98 ffffffad
 U+1F622:fffffff0 ffffff9f ffffff98 ffffffa2
@@ -26,3 +25,4 @@ U+1F525:fffffff0 ffffff9f ffffff94 ffffffa5
 U+1F61E:fffffff0 ffffff9f ffffff98 ffffff9e
 U+1F62B:fffffff0 ffffff9f ffffff98 ffffffab
 U+1F649:fffffff0 ffffff9f ffffff99 ffffff89
+U+2764:ffffffe2 ffffff9d ffffffa4 ffffffef ffffffb8 ffffff8f
