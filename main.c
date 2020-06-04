@@ -20,7 +20,6 @@ Statistics to collect:
 // DD.MM.YY, hh:mm - Verena:
 // DD.MM.YY, hh:mm - Adam ❤:
 int main(){
-
     char filename[] = "data.txt";
     char tablename[] = "emoji_encodings.txt";
 
@@ -31,7 +30,6 @@ int main(){
     // printTable(table, table_length);
 
     fclose(file_ptr);
-    return 0;
     file_ptr = fopen(filename, "r");
     int buffer_length = 256;
     char buffer[buffer_length];
@@ -56,7 +54,7 @@ int main(){
 
     int msg_count[2] = {0}; // messages per person
 
-    int max_no_read = 10;//__INT_MAX__; // debugging
+    int max_no_read = __INT_MAX__; // debugging
     int read_count = 0; // debugging
     int sender;
     int word_size = 32;
@@ -74,14 +72,12 @@ int main(){
         // read words on line
         while(*buffer_ptr != '\0' && *buffer_ptr != '\n'){
             readWord(&buffer_ptr, word, word_size);
+            // printf("%s\n", word);
             if(isEmoji(word) < 0){
-                int b = 0;
-                printf("%s\n", word);
+                // int b = 0;
+                // printf("%s\n", word);
+                findAndIncrement(table, table_length, word);
                 // printf("%ld\n", sizeof(word)/sizeof(char));
-                while(word[b] != '\0'){
-                    printf("%d ", word[b++]);
-                }
-                printf("\n");
             }else{
                 // word
                 dict_idx = newWord(dictionary, dict_tail, word);
@@ -114,6 +110,8 @@ int main(){
     // sort dictionary by occurences
     // mergeSort(word_occurences, dictionary,0, dict_tail-1);
     // printDict(dictionary, word_occurences, dict_tail);
+    printTable(table, table_length);
+
 
 
     // // write to file
