@@ -20,7 +20,7 @@ int isEmoji(char *word);
 int newWord(char * dictionary[], int dict_length, char* word);
 int compareWords(char* word1, char* word2);
 void printDict(char ** dictionary, int* occurences, int tail);
-
+void countDate(int date_array[], int length, char *word);
 
 
 #endif

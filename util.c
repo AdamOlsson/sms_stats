@@ -152,3 +152,32 @@ void readWord(char ** buffer_ptr, char word[], int word_size){
         word[i] = tolower(*val);
     }
 }
+
+void countDate(int date_array[], int year_offset, char *word){
+    char DD[3];
+    char MM[3];
+    char YY[3];
+    char hh[3];
+    char mm[3];
+    int DDint, MMint, YYint, hhint, mmint;
+    // 02.12.18, 22:41
+    memcpy(DD, word, 2);
+    memcpy(MM, word+3, 2);
+    memcpy(YY, word+6, 2);
+    memcpy(hh, word+10, 2);
+    memcpy(mm, word+13, 2);
+    DD[2] = '\0';
+    MM[2] = '\0';
+    YY[2] = '\0';
+    hh[2] = '\0';
+    mm[2] = '\0';
+    // printf("%s.%s.%s %s:%s \n", YY, MM, DD, hh, mm);
+    DDint = atoi(DD);
+    MMint = atoi(MM);
+    YYint = atoi(YY);
+    hhint = atoi(hh);
+    mmint = atoi(mm);
+    // printf("%d.%d.%d %d:%d \n", YYint, MMint, DDint, hhint, mmint);
+    // printf("%d\n", (DDint-1) + (MMint-1)*31 + (YYint-18)*31*12);
+    date_array[(DDint-1) + (MMint-1)*31 + (YYint-18)*31*12]++;
+}

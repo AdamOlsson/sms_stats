@@ -132,7 +132,7 @@ int cmp(int a1[], int a2[], int length){
 void printIntArray(int *a, int length){
     printf("[ ");
     for(int i = 0; i < length; i++){
-        printf("%x ", a[i]);
+        printf("%d ", a[i]);
     }
     printf("]\n");
 }

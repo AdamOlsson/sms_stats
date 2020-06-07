@@ -7,8 +7,8 @@
 Statistics to collect:
     - Message per person, DONE!
     - Plot of number of messages over each day
-    - Count occurences of words
-    - Count occurences of emojis
+    - Count occurences of words DONE!
+    - Count occurences of emojis DONE!
 
 */ 
 
@@ -35,6 +35,10 @@ int main(){
     char buffer[buffer_length];
     char *buffer_ptr;
 
+    int year_offset = 2018;
+    int date_length = (2020-year_offset +1)*31*12;
+    int date_array[date_length];
+    memset(date_array, 0, date_length*sizeof(int));
 
     // safeguard for NULL pointer
     if(file_ptr == NULL){
@@ -65,6 +69,8 @@ int main(){
         if(isNewMessage(buffer_ptr) == 1){
             sender = who(buffer_ptr);   // who sent the message?
             msg_count[sender]++;        // count sent messages
+
+            countDate(date_array, year_offset, buffer_ptr);
 
             buffer_ptr += separator(sender);
         }
@@ -110,8 +116,8 @@ int main(){
     // sort dictionary by occurences
     // mergeSort(word_occurences, dictionary,0, dict_tail-1);
     // printDict(dictionary, word_occurences, dict_tail);
-    printTable(table, table_length);
-
+    // printTable(table, table_length);
+    printIntArray(date_array, date_length);
 
 
     // // write to file
