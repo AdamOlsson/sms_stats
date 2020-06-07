@@ -6,7 +6,7 @@
 /*
 Statistics to collect:
     - Message per person, DONE!
-    - Plot of number of messages over each day
+    - Count number of messages over each day DONE!
     - Count occurences of words DONE!
     - Count occurences of emojis DONE!
 
@@ -16,6 +16,11 @@ Statistics to collect:
 //     char word[];
 //     int count;
 // };
+
+void writeMsgPerPerson(int msg_count[]);
+void writeWordOccurences(char *dictionary[], int occurence[], int length);
+void writeEmojiOccurences(struct Table table[], int length);
+void writeMsgPerDay(int count[], int length);
 
 // DD.MM.YY, hh:mm - Verena:
 // DD.MM.YY, hh:mm - Adam ❤:
@@ -27,7 +32,6 @@ int main(){
     int table_length = 28;
     struct Table table[table_length];
     readTable(table, table_length, file_ptr);
-    // printTable(table, table_length);
 
     fclose(file_ptr);
     file_ptr = fopen(filename, "r");
@@ -117,21 +121,54 @@ int main(){
     // mergeSort(word_occurences, dictionary,0, dict_tail-1);
     // printDict(dictionary, word_occurences, dict_tail);
     // printTable(table, table_length);
-    printIntArray(date_array, date_length);
+    // printIntArray(date_array, date_length);
 
 
     // // write to file
-    // file_ptr = fopen("statistics.txt", "w");
-    // fprintf(file_ptr, "messages sent: %d (Verena) %d (Adam)", msg_count[0], msg_count[1]);
-    // fclose(file_ptr);
+    writeMsgPerPerson(msg_count);
+    writeWordOccurences(dictionary, word_occurences, dict_tail);
+    writeEmojiOccurences(table, table_length);
+    writeMsgPerDay(date_array, date_length);
 
     return 0;
 }
 
+void writeMsgPerPerson(int msg_count[]){
+    FILE *file_ptr = fopen("msg_per_person.csv", "w");
+    fprintf(file_ptr, "Verena,%d\n", msg_count[0]);
+    fprintf(file_ptr, "Adam,%d\n", msg_count[1]);
+    fclose(file_ptr);
+}
+
+void writeWordOccurences(char *dictionary[], int occurence[], int length){
+    FILE *file_ptr = fopen("word_occurences.csv", "w");
+
+    for(int i = 0; i < length; i++){
+        fprintf(file_ptr, "%s,%d\n", dictionary[i], occurence[i]);
+    }
+    fclose(file_ptr);
+}
+
+void writeEmojiOccurences(struct Table table[], int length){
+    FILE *file_ptr = fopen("emoji_occurences.csv", "w");
+
+    for(int i = 0; i < length; i++){
+        fprintf(file_ptr, "%s,%d\n", table[i].unicode, table[i].count);
+    }
+
+    fclose(file_ptr);
+}
 
 
+void writeMsgPerDay(int count[], int length){
+    FILE *file_ptr = fopen("msg_per_day.csv", "w");
+    fprintf(file_ptr, "#index,count\n");
 
-
+    for(int i = 0; i < length; i++){
+        fprintf(file_ptr, "%d,%d\n", i, count[i]);
+    }
+    fclose(file_ptr);
+}
 
 
 

@@ -4,3 +4,4 @@ data.txt
 statistics.txt
 *.o
 main
+*.csv
